@@ -1,24 +1,26 @@
 import axios from 'axios';
 import { useState } from 'react';
+import SearchBar from '../componentes/SearchBar';
+import Header from '../componentes/Header';
+import BuscarResultado from '../componentes/BuscarResultado';
 
 
 export default function PaginaBusq(){
     const [statCargando, setCargando] = useState(false);
-    const [searchResults, setSearchResults] = useState(undefined);
+    const [searchResults, setSearchResults] = useState([]);
 
     function onSearch(nombre){
         setCargando(true);
-        axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${nombre}`)
-        .then(
-            function(response){
-                setCargando(false);
-                if(response.data.results.length === 1){
-                    setSearchResults([response.data.results]); //si hay un solo resultado no se comporta como array
-                }else{
-                    setSearchResults(response.data.results);
-                }
-            }
+        setCargando(false);
+        setSearchResults([...searchResults, {nombre}]);
+        ;
         
-        )
     }
+    return(
+    <>
+        <Header title="Pagina de mierda"/>
+        <SearchBar onSearch={onSearch} statCargando={statCargando}/>
+        <BuscarResultado resultados={searchResults}/>
+    </>
+    )
 }

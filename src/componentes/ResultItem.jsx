@@ -1,5 +1,5 @@
 
-export function Item(result){
+export default function ResultItem(result){
     return (
         <>
             <li key={result.id}>
