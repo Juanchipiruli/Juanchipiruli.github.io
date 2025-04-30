@@ -43,3 +43,5 @@ app.listen(PORT, () => {
   refreshToken();
   setInterval(refreshToken, 5 * 60 * 60 * 1000); // 5 horas
 });
+
+app.get('/keepalive', (req, res) => res.send('OK'));
