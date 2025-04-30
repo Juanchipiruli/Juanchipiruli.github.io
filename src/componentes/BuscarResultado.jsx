@@ -10,8 +10,8 @@ export default function BuscarResultado({resultados}){
         ):(
             <ul>
                 {resultados.map(
-                    (resultados) => (
-                        <ResultItem result={resultados.name}/>
+                    (resultado) => (
+                        <ResultItem key={resultado.id} result={resultado}/>
                     )
                 )}
             </ul> 
