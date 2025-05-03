@@ -51,9 +51,15 @@ export default function PaginaBusq(){
                 setCargando(false);
             });
     }
+    function inicio(){
+        setSearchResults([]);
+    }
     return(
     <>
         <Header title="Pagina de mierda"/>
+        <button onClick={inicio}>
+        Inicio
+        </button>
         <SearchBar onSearch={onSearch} statCargando={statCargando}/>
         <BuscarResultado resultados={searchResults} busqueda={terminoBusqueda}/>
     </>
