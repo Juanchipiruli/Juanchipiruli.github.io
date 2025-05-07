@@ -1,12 +1,16 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()], // Asegúrate de incluir el plugin de React
+  plugins: [react()],
   server: {
-    allowedHosts: [
-      '.ngrok-free.app', // Permite cualquier subdominio de ngrok
-      'localhost',
-    ],
-  },
-});
+    proxy: {
+      '/api': {
+        target: 'https://api.mercadolibre.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
+})

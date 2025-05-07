@@ -1,12 +1,33 @@
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 export default function PaginaDetail(){
     const { id } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
+    const [descripcion, setDescripcion] = useState("");
     
     // Extraer los datos del estado
     const { name, images, price, busq } = location.state || {};
+    
+    function obtenerDesc(){
+        axios.get(`/api/items/${id}/description`)
+            .then((response) => {
+                console.log('Respuesta completa:', response.data);
+                
+            }).catch(error => {
+                if (error.response) {
+                    if (error.response.status === 404) {
+                        setDescripcion("No existe descripción")
+                    }
+                }
+            });
+    }
+    useEffect(() => {
+        obtenerDesc();
+    })
+
     
     const volverAtras = () => {
         navigate('/', {
@@ -45,8 +66,13 @@ export default function PaginaDetail(){
                             ))}
                         </div>
                     </div>
-                )}
+                )
+                }
+                <p>
+                    {descripcion}
+                </p>
             </div>
+            
         </div>
     );
 }

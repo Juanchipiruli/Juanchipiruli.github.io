@@ -11,7 +11,10 @@ export default function PaginaBusq(){
     const [statCargando, setCargando] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
     const [terminoBusqueda, setTerminoBusqueda] = useState('');
-
+    
+    useEffect(() => {
+        requestToken();
+    }, []);
     // Efecto para realizar búsqueda automática si hay un término de búsqueda en el estado
     useEffect(() => {
         if (location.state && location.state.busqueda) {
@@ -19,11 +22,34 @@ export default function PaginaBusq(){
         }
     }, [location.state]);
 
+    function requestToken(){
+        axios.post('https://api.mercadolibre.com/oauth/token',
+        {
+            grant_type:"client_credentials",
+            client_id: "3334559570587266",
+            client_secret: "DufQ2GrPj5abeVfdt7MIQ9COw50LfSpL"
+        },
+        {
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/x-www-form-urlencoded"
+            }
+        }
+        ).then(
+            (data) => {
+                console.log(data);
+                axios.defaults.headers.common['Authorization'] = "Bearer " + data.data.access_token;
+            }
+        ).catch(error => {
+            console.error("Error obteniendo token:", error);
+        })
+    }
+
     function onSearch(nombre)
     {
         setTerminoBusqueda(nombre);
         setCargando(true);
-        axios.get(`https://api.mercadolibre.com/products/search?site_id=MLA&q=${nombre}`)
+        axios.get(`/api/products/search?site_id=MLA&q=${nombre}`)
             .then((response) => {
                 console.log('Respuesta completa:', response.data);
                 const productos = response.data.results.map(item => {
@@ -62,6 +88,7 @@ export default function PaginaBusq(){
         </button>
         <SearchBar onSearch={onSearch} statCargando={statCargando}/>
         <BuscarResultado resultados={searchResults} busqueda={terminoBusqueda}/>
+        <button onClick={requestToken}>eeee</button>
     </>
     )
 }
