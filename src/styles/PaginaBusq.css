@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.container .cabeza{
+    width: 100%;
+    background-color: #fff159;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.container .cabeza img{
+    height: 50px;
+}
+.container .cabeza .botones{
+    position: fixed;
+    left: 0;
+}
+.container .cabeza #inicio{
+    border: 0px;
+    margin-left: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.container .cabeza #carro{
+    border: 0px;
+    margin-left: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
