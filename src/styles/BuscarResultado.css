@@ -1,0 +1,17 @@
+.contenedoraso{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+    width: 100%;
+}
+.contenedoraso .citem{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    box-shadow: 0px 0px 10px 0px #6e6e6e;
+    width: clamp(200px, 54%, 1300px);
+
+}

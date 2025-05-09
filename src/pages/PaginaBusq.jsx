@@ -83,6 +83,7 @@ export default function PaginaBusq(){
     }
     function inicio(){
         setSearchResults([]);
+        console.log('inicio');
     }
     function irCarro(){
         navigate('/carrito', {
@@ -93,14 +94,14 @@ export default function PaginaBusq(){
     <div className='container'>
         <div className="cabeza">
             <section className="botones">
-            <button onClick={inicio} id="inicio">
+            <button onClick={inicio} className="botonessup">
             <FaHome />
             </button>
-            <button onClick={irCarro} id="carro">
+            <button onClick={irCarro} className="botonessup">
             <FaCartShopping />
             </button>
             </section>
-            <Header/>
+            <Header inicioA={inicio}/>
             <SearchBar onSearch={onSearch} statCargando={statCargando}/>
         </div>
         

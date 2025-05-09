@@ -1,7 +1,7 @@
-export default function Header() {
+export default function Header({inicioA}) {
     return (
-        <div className="carrito-compras">
+        <button className="carrito-compras" onClick={inicioA}>
             <img src="https://logodownload.org/wp-content/uploads/2018/10/mercado-libre-logo.png" alt="" />
-        </div>
+        </button>
     )
 }
