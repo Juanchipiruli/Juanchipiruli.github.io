@@ -1,14 +1,18 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SearchBar from '../componentes/SearchBar';
 import Header from '../componentes/Header';
 import BuscarResultado from '../componentes/BuscarResultado';
+import '../styles/PaginaBusq.css';
+import { FaHome } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6";
 
 
 export default function PaginaBusq(){
     const location = useLocation();
     const [statCargando, setCargando] = useState(false);
+    const navigate = useNavigate();
     const [searchResults, setSearchResults] = useState([]);
     const [terminoBusqueda, setTerminoBusqueda] = useState('');
     
@@ -79,16 +83,30 @@ export default function PaginaBusq(){
     }
     function inicio(){
         setSearchResults([]);
+        console.log('inicio');
+    }
+    function irCarro(){
+        navigate('/carrito', {
+            state: { busqueda: terminoBusqueda }
+        });
     }
     return(
-    <>
-        <Header title="Pagina de mierda"/>
-        <button onClick={inicio}>
-        Inicio
-        </button>
-        <SearchBar onSearch={onSearch} statCargando={statCargando}/>
+    <div className='container'>
+        <div className="cabeza">
+            <section className="botones">
+            <button onClick={inicio} className="botonessup">
+            <FaHome />
+            </button>
+            <button onClick={irCarro} className="botonessup">
+            <FaCartShopping />
+            </button>
+            </section>
+            <Header inicioA={inicio}/>
+            <SearchBar onSearch={onSearch} statCargando={statCargando}/>
+        </div>
+        
+        
         <BuscarResultado resultados={searchResults} busqueda={terminoBusqueda}/>
-        <button onClick={requestToken}>eeee</button>
-    </>
+    </div>
     )
 }
