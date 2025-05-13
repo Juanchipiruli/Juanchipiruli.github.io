@@ -1,23 +1,22 @@
 import './App.css'
 import PaginaBusq from './pages/PaginaBusq'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import PaginaDetail from './pages/PaginaDetail'
-import Carrito from './pages/Carrito'
-import { CarritoProvider } from './context/CarritoContext';
+import Carrito, { CarritoProvider } from './pages/Carrito'
+
 function App() {
   return (
-    <>
-    <CarritoProvider>
-    <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<PaginaBusq/>}/>
-          <Route path="/detail/:id" element={<PaginaDetail />} />
-          <Route path='/carrito' element={<Carrito />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </CarritoProvider>
-      
-    </>
+    <div className="app-container">
+      <CarritoProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<PaginaBusq/>}/>
+            <Route path="/detail/:id" element={<PaginaDetail />} />
+            <Route path='/carrito' element={<Carrito />}/>
+          </Routes>
+        </BrowserRouter>
+      </CarritoProvider>
+    </div>
   )
 }
 

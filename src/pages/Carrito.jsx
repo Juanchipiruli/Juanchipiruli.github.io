@@ -1,8 +1,38 @@
+import { createContext, useContext, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useCarrito } from '../context/CarritoContext';
 import { FaTrash } from 'react-icons/fa';
+import '../App.css';
 
-export default function Carrito(){
+const CarritoContext = createContext();
+
+export function CarritoProvider({ children }) {
+    const [carro, setCarro] = useState([]);
+
+    const agregarAlCarro = (producto) => {
+        setCarro([...carro, producto]);
+    };
+
+    const eliminarDelCarro = (id) => {
+        setCarro(carro.filter(item => item.id !== id));
+    };
+
+    return (
+        <CarritoContext.Provider value={{ carro, agregarAlCarro, eliminarDelCarro, setCarro }}>
+            {children}
+        </CarritoContext.Provider>
+    );
+}
+
+export function useCarrito() {
+    const context = useContext(CarritoContext);
+    if (!context) {
+        throw new Error('useCarrito must be used within a CarritoProvider');
+    }
+    return context;
+}
+
+// Default export remains your Carrito component
+export default function Carrito() {
     const navigate = useNavigate();
     const location = useLocation();
     const { carro, setCarro } = useCarrito();
@@ -28,30 +58,40 @@ export default function Carrito(){
     };
     
     return(
-        <>
-        <h1>Mi Carrito de Compras</h1>
-        <button onClick={volverAtras}>Volver a inicio</button>
-        
-        {carro.length === 0 ? (
-            <p>No hay productos en el carrito</p>
-        ) : (
-            <ul>
-                {carro.map(producto => (
-                    <li key={producto.id} style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
-                        {producto.img && <img src={producto.img} alt={producto.name} style={{maxWidth: '100px', marginRight: '10px'}} />}
-                        <div>
-                            <h3>{producto.name}</h3>
-                            <p>${producto.price}</p>
-                        </div>
-                        <button 
-                            onClick={() => eliminarProducto(producto.id)}
-                        >
-                            <FaTrash />
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        )}
-        </>
+        <div className="carrito-container">
+            <h1 className="carrito-titulo">Mi Carrito de Compras</h1>
+            <button 
+                onClick={volverAtras}
+                className="carrito-volver-btn"
+            >
+                Volver a inicio
+            </button>
+            
+            {carro.length === 0 ? (
+                <p className="carrito-vacio">No hay productos en el carrito</p>
+            ) : (
+                <ul className="carrito-lista">
+                    {carro.map(producto => (
+                        <li key={producto.id} className="carrito-item">
+                            {producto.img && <img 
+                                src={producto.img} 
+                                alt={producto.name} 
+                                className="carrito-imagen"
+                            />}
+                            <div className="carrito-info">
+                                <h3 className="carrito-nombre">{producto.name}</h3>
+                                <p className="carrito-precio">${producto.price}</p>
+                            </div>
+                            <button 
+                                onClick={() => eliminarProducto(producto.id)}
+                                className="carrito-eliminar-btn"
+                            >
+                                <FaTrash />
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
     )
 };

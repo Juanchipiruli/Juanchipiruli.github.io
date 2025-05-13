@@ -7,6 +7,7 @@ import BuscarResultado from '../componentes/BuscarResultado';
 import '../styles/PaginaBusq.css';
 import { FaHome } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
+import { IoMdSearch } from "react-icons/io";
 
 
 export default function PaginaBusq(){
@@ -49,14 +50,15 @@ export default function PaginaBusq(){
         })
     }
 
-    function onSearch(nombre)
-    {
+    function onSearch(nombre) {
         setTerminoBusqueda(nombre);
         setCargando(true);
         axios.get(`/api/products/search?site_id=MLA&q=${nombre}`)
             .then((response) => {
                 console.log('Respuesta completa:', response.data);
                 const productos = response.data.results.map(item => {
+                    // Extraer categorías
+                    const categories = item.categories || [];
                     // Extraer URLs de imágenes del array pictures
                     const imageUrls = item.pictures && item.pictures.length > 0 
                         ? item.pictures.map(pic => pic.url) 
@@ -70,7 +72,8 @@ export default function PaginaBusq(){
                         name: item.name,
                         price: item.price,
                         img: mainImage,
-                        allImages: imageUrls
+                        allImages: imageUrls,
+                        category: categories.length > 0 ? categories[0].name : 'Sin categoría'
                     };
                 });
                 setSearchResults(productos);
@@ -90,23 +93,37 @@ export default function PaginaBusq(){
             state: { busqueda: terminoBusqueda }
         });
     }
+    const [filter, setFilter] = useState('');
+    const filteredResults = filter 
+        ? searchResults.filter(item => item.category.includes(filter))
+        : searchResults;
+
     return(
-    <div className='container'>
-        <div className="cabeza">
-            <section className="botones">
-            <button onClick={inicio} className="botonessup">
-            <FaHome />
-            </button>
-            <button onClick={irCarro} className="botonessup">
-            <FaCartShopping />
-            </button>
-            </section>
-            <Header inicioA={inicio}/>
-            <SearchBar onSearch={onSearch} statCargando={statCargando}/>
+        <div className='busqueda-container'>
+            <div className="cabeza">
+                <section className="botones">
+                    <button onClick={inicio} className="botonessup">
+                        <FaHome />
+                    </button>
+                    <button onClick={irCarro} className="botonessup">
+                        <FaCartShopping />
+                    </button>
+                </section>
+                <Header inicioA={inicio}/>
+                <SearchBar onSearch={onSearch} statCargando={statCargando}/>
+            </div>
+            
+            <div className='main-container'>
+                <div className="filtro-categorias">
+                    <select onChange={(e) => setFilter(e.target.value)}>
+                        <option value="">Todas las categorías</option>
+                        {[...new Set(searchResults.map(item => item.category))].map(cat => (
+                            <option key={cat} value={cat}>{cat}</option>
+                        ))}
+                    </select>
+                </div>
+                <BuscarResultado resultados={filteredResults} busqueda={terminoBusqueda}/>
+            </div>
         </div>
-        
-        
-        <BuscarResultado resultados={searchResults} busqueda={terminoBusqueda}/>
-    </div>
-    )
+    );
 }
