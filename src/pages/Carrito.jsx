@@ -62,7 +62,7 @@ export default function Carrito() {
             <h1 className="carrito-titulo">Mi Carrito de Compras</h1>
             <button 
                 onClick={volverAtras}
-                className="carrito-volver-btn"
+                className="ml-button"
             >
                 Volver a inicio
             </button>
@@ -80,7 +80,6 @@ export default function Carrito() {
                             />}
                             <div className="carrito-info">
                                 <h3 className="carrito-nombre">{producto.name}</h3>
-                                <p className="carrito-precio">${producto.price}</p>
                             </div>
                             <button 
                                 onClick={() => eliminarProducto(producto.id)}

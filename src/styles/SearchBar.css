@@ -1,7 +1,7 @@
 .searchbar {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: clamp(200px, 50%, 600px);
     max-width: 600px;
     margin: 0px 0px 0px 10px;
     position: relative;

@@ -30,14 +30,6 @@ body {
   padding-bottom: 10px;
 }
 
-.detalle-volver-btn {
-  background: #f0f0f0;
-  border: 1px solid #ddd;
-  padding: 8px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
 
 .detalle-imagen {
   max-width: 100%;
@@ -93,7 +85,7 @@ body {
 }
 
 .carrito-imagen {
-    max-width: 80px;
+    height: 150px;
     margin-right: 15px;
     border-radius: 4px;
 }
@@ -139,19 +131,12 @@ img{
 
 /* Header estilo MercadoLibre */
 /* Mantener los estilos existentes y agregar estos nuevos */
-.header-ml {
-  background-color: var(--ml-yellow);
-  padding: 10px 0;
-  box-shadow: 0 1px 0 0 rgba(0,0,0,.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
+
 
 .main-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  width: clamp(600px, 80%, 1200px);
+  margin-top: 10px;
+  padding: 5px;
 }
 
 /* Estilos para productos */
@@ -197,73 +182,78 @@ img{
   background-color: #2968c8;
 }
 
+.ml-button:disabled {
+  background-color: var(--ml-gray);
+  cursor: not-allowed;
+}
+
 /* Estilos mejorados para el carrusel */
 .carousel-container {
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.carousel {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.carousel-slide {
-  min-width: 100%;
-  flex-shrink: 0;
-}
-
-.carousel-controls {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-.carousel-prev, .carousel-next {
-  background: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  z-index: 10;
-  pointer-events: all;
-  font-size: 20px;
-}
-
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.carousel-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ccc;
-  margin: 0 5px;
-  cursor: pointer;
-}
-
-.carousel-dot.active {
-  background: var(--ml-blue);
-}
-
-.carousel-prev:hover, .carousel-next:hover {
-  background: rgba(0,0,0,0.8);
-}
-
-.app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+  }
+  
+  .carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  .carousel-prev, .carousel-next {
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    pointer-events: all;
+    font-size: 20px;
+  }
+  
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .carousel-dot.active {
+    background: var(--ml-blue);
+  }
+  
+  .carousel-prev:hover, .carousel-next:hover {
+    background: rgba(0,0,0,0.8);
+  }
+  
+  .app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
 /* Estilos para asegurar que el contenido sea visible */
 body {

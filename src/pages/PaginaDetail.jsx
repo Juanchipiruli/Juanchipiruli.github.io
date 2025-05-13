@@ -79,7 +79,7 @@ export default function PaginaDetail(){
             <h1 className="detalle-titulo">Detalles del Producto</h1>
             <button 
                 onClick={volverAtras}
-                className="detalle-volver-btn"
+                className="ml-button"
             >
                 Volver
             </button>
@@ -120,36 +120,8 @@ export default function PaginaDetail(){
                     </div>
                 )}
                 <p>{descripcion}</p>
-                <button 
-                    className="ml-button"
-                    onClick={() => {
-                        const { agregarAlCarro } = useCarrito();
-                        agregarAlCarro({
-                            id,
-                            name,
-                            price,
-                            img: images?.[0] || ''
-                        })
-                    }}
-                >
-                    Comprar ahora
-                </button>
+                
             </div>
         </div>
     );
 }
-// Remove these lines from the end of the file:
-// const { agregarAlCarro } = useCarrito();
-// 
-// // En el return, agregar:
-// <button 
-//     className="ml-button"
-//     onClick={() => agregarAlCarro({
-//         id,
-//         name,
-//         price,
-//         img: images?.[0] || ''
-//     })}
-// >
-//     Comprar ahora
-// </button>

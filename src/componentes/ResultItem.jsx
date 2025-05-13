@@ -7,7 +7,7 @@ export default function ResultItem({result, busqueda}){
     const { carro, agregarAlCarro } = useCarrito();
     return (
         <div className="product-card">
-            <div className="product-info">
+            <div className="info">
                 {result.img && (
                     <img 
                         src={result.img} 
@@ -26,7 +26,6 @@ export default function ResultItem({result, busqueda}){
                 }}
                 >
                 <h3 className="product-title">{result.name}</h3>
-                <p className="product-price">${result.price}</p>
             </Link>
         </div>
         <button 

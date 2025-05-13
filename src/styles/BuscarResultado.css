@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 20px;
+    margin: 0;
     width: 100%;
 }
 .contenedoraso .citem{
@@ -12,6 +12,6 @@
     padding: 20px;
     gap: 15px;
     box-shadow: 0px 0px 10px 0px #6e6e6e;
-    width: clamp(200px, 54%, 1300px);
+    width: 50%;
 
 }

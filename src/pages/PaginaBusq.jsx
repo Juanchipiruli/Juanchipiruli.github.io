@@ -7,7 +7,6 @@ import BuscarResultado from '../componentes/BuscarResultado';
 import '../styles/PaginaBusq.css';
 import { FaHome } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
-import { IoMdSearch } from "react-icons/io";
 
 
 export default function PaginaBusq(){
@@ -99,7 +98,7 @@ export default function PaginaBusq(){
         : searchResults;
 
     return(
-        <div className='busqueda-container'>
+        <div className='container'>
             <div className="cabeza">
                 <section className="botones">
                     <button onClick={inicio} className="botonessup">
@@ -111,6 +110,7 @@ export default function PaginaBusq(){
                 </section>
                 <Header inicioA={inicio}/>
                 <SearchBar onSearch={onSearch} statCargando={statCargando}/>
+                
             </div>
             
             <div className='main-container'>

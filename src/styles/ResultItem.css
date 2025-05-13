@@ -1,46 +1,7 @@
-li{
-    width: 100%;
-    border-bottom: 0.1px solid #adadada0;
-    display: flex;
-}
-li a{
-    text-decoration: none;
-}
+
 .info{
     display: flex;
     width: 100%;
     align-items: center;
     padding-bottom: 10px;
-}
-h3{
-    font-family: 'Roboto', sans-serif;
-    color: black;
-}
-.boton{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 60px;
-}
-.boton button{
-    height: 30px;
-    width: 30px;
-    background-color: #3483fa;
-    border-radius: 4px;
-    border: 0px;
-    color: white;
-    box-shadow: 0px 0px 5px 0px #6e6e6e;
-    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-.boton button:hover{
-    background-color: white;
-    color: #3483fa;
-    transform: scale(1.1);
-    cursor: pointer;
-}
-.boton button:disabled{
-    background-color: #3f4041;
-    color: rgb(0, 0, 0);
-    transform: scale(1);
-    cursor: not-allowed;
 }

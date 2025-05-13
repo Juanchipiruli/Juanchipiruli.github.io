@@ -16,7 +16,7 @@
     height: 50px;
 }
 .container .cabeza .botones{
-    position: fixed;
+    position: absolute;
     left: 0;
 }
 .container .cabeza .botonessup{
