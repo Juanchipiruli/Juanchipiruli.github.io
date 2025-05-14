@@ -1,12 +1,3 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Notar que seha tenido que usar varias cosas bastante raras debido al mal funciionamiento de los endpoints de mercadolibre, en primera instancia se uso un proxy local para el desarrollo de la app, este se encuentra en carrito/vite.config.js
+Una vez subido a netlify este dejo de funcionar y se tuvo que recurrir a un proxy con netlify functions, notar que en la carpeta se encuentra el proxy. Sin embargo se puede ver que la obtencion del token se hace tanto en PaginaBusq.jsx y en el proxy, esto es debido a que inicialmente se hacia de forma local y de la forma en  la cual se era de esperar q ue funcione. Por eso voy a dejarlo asi para observar las intenciones iniciales.
+Link del despliegue del carrito de MLA: https://carritomla.netlify.app/
