@@ -52,7 +52,8 @@ export default function PaginaBusq(){
     function onSearch(nombre) {
         setTerminoBusqueda(nombre);
         setCargando(true);
-        axios.get(`/api/products/search?site_id=MLA&q=${nombre}`)
+        const baseUrl = '/api';
+        axios.get(`${baseUrl}/products/search?site_id=MLA&q=${nombre}`)
             .then((response) => {
                 console.log('Respuesta completa:', response.data);
                 const productos = response.data.results.map(item => {
