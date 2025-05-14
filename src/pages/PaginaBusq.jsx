@@ -52,8 +52,13 @@ export default function PaginaBusq(){
     function onSearch(nombre) {
         setTerminoBusqueda(nombre);
         setCargando(true);
-        const baseUrl = '/api';
-        axios.get(`${baseUrl}/products/search?site_id=MLA&q=${nombre}`)
+        const baseUrl = import.meta.env.DEV 
+        ? '/api' 
+        : '/.netlify/functions/proxy';
+        const url = import.meta.env.DEV
+        ? `${baseUrl}/products/search?site_id=MLA&q=${nombre}`
+        : `${baseUrl}/products/search?site_id=MLA&q=${nombre}`;
+        axios.get(`${url}`)
             .then((response) => {
                 console.log('Respuesta completa:', response.data);
                 const productos = response.data.results.map(item => {
