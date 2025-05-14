@@ -2,7 +2,7 @@ const axios = require('axios');
 
 exports.handler = async (event) => {
   try {
-    // Extraer la ruta y parámetros de consulta
+    // Extraer la ruta y parámetros de consulta exactamente como vienen
     const path = event.path.replace('/.netlify/functions/proxy', '');
     const queryString = new URLSearchParams(event.queryStringParameters).toString();
     const url = `https://api.mercadolibre.com${path}?${queryString}`;
@@ -12,7 +12,7 @@ exports.handler = async (event) => {
     // Realizar la solicitud a la API de Mercado Libre
     const response = await axios.get(url);
     
-    // Devolver la respuesta
+    // Devolver la respuesta exactamente como viene de la API
     return {
       statusCode: 200,
       headers: {
