@@ -1,6 +1,6 @@
-import axios from 'axios';
+const axios = require('axios');
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
   try {
     // Extraer la ruta y parámetros de consulta
     const path = event.path.replace('/.netlify/functions/proxy', '');
